@@ -19,8 +19,13 @@ class ArticleController extends Controller
                 return $category->id;
             });
 
+        $category = 1;
+        if ($request->has('newsCategory')) {
+            $category = (int) $request->input('newsCategory');
+        }
+          
         $articles = Article::filter($request->all())
-            ->preferences($preferences->toArray())
+            ->preferences([$category])
             ->orderBy('id', 'DESC')
             ->paginate(
                 $this->getPageLimit(),

@@ -22,6 +22,7 @@ class AuthController extends Controller
             'password' => $request->input('password')
         ]);
 
+
         return app()->handle($tokenRequest);
     }
 
